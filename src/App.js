@@ -1,25 +1,42 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react"
+import { createGlobalStyle } from "styled-components"
+import "./App.css"
+import { Banner } from "./Banner/Banner"
+import { FoodDialog } from "./FoodDialog/FoodDialog"
+import { useOpenFood } from "./Hooks/useOpenFood"
+import { useOrders } from "./Hooks/useOrders"
+import { useTitle } from "./Hooks/useTitle"
+import Menu from "./Menu/Menu"
+import Navbar from "./Navbar/Navbar"
+import Order from "./Order/Order"
+
+const GlobalStyle = createGlobalStyle`
+  body {
+    font-family: 'Open Sans', sans-serif;
+    
+    
+  }
+
+  h1, h2, h3{
+    font-family: 'Roboto', sans-serif;
+  }
+`
 
 function App() {
+  const openFood = useOpenFood()
+  const orders = useOrders()
+
+  useTitle({ ...openFood, ...orders })
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <>
+      <GlobalStyle />
+      <FoodDialog {...openFood} {...orders} />
+      <Navbar />
+      <Order {...orders} />
+      <Banner />
+      <Menu {...openFood} />
+    </>
+  )
 }
 
-export default App;
+export default App
