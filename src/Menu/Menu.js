@@ -1,11 +1,23 @@
 import React from "react"
 import styled from "styled-components"
 import { foods, formatPrice } from "../Data/FoodData"
+import { pizzaRed } from "../Styles/colors"
 import { Food, FoodGrid, FoodLabel } from "./FoodGrid"
 
 const MenuStyled = styled.div`
+  display: flex;
+  flex-direction: column;
+
   height: 1000px;
-  margin: 0px 400px 50px 20px;
+  max-width: 800px;
+  color: #fff;
+
+  background-color: ${pizzaRed};
+  padding: 20px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+
+  margin: 50px auto 0 auto;
 `
 
 function Menu({ setOpenFood }) {

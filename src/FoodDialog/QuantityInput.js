@@ -25,10 +25,10 @@ const IncrementButton = styled.div`
   cursor: pointer;
 
   line-height: 23px;
-  margin: 0px 10px;
+  margin: 0px 5px;
   transition: all 450ms;
-
-  border: 1px solid ${pizzaRed};
+  /* 
+  border: 1px solid ${pizzaRed}; */
   ${({ disabled }) =>
     disabled &&
     `opacity: 0.5;

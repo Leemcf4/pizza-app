@@ -3,8 +3,12 @@ import styled from "styled-components"
 
 const ToppingGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  padding-top: 20px;
+  grid-template-columns: repeat(2, 1fr);
+  padding: 20px 10px 5px 5px;
+
+  @media (min-width: 442px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
 `
 
 const ToppingCheckbox = styled.input`
@@ -14,6 +18,7 @@ const ToppingCheckbox = styled.input`
 
 const CheckboxLabel = styled.label`
   cursor: pointer;
+  padding-right: 2px;
 `
 
 function Toppings({ toppings, checkTopping }) {

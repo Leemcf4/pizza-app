@@ -20,6 +20,7 @@ const OrderStyled = styled.div`
   display: flex;
   flex-direction: column;
   padding: 20px;
+  display: none;
 `
 
 const OrderContent = styled(DialogContent)`
@@ -33,6 +34,16 @@ const OrderFooter = styled(DialogFooter)`
 const OrderContainer = styled.div`
   padding: 10px 0px;
   border-bottom: 1px solid #e8e8e8;
+  ${({ editable }) =>
+    editable
+      ? `
+
+    &:hover {
+      cursor: pointer;
+      background-color: #e4e4e4; 
+    }
+  `
+      : `pointer-events: none;`}
 `
 
 const OrderItem = styled.div`
@@ -47,12 +58,19 @@ const DetailItem = styled.div`
   font-size: 10px;
 `
 
-function Order({ orders }) {
+function Order({ orders, setOrders, setOpenFood }) {
   console.log(orders)
 
   const subtotal = orders.reduce((total, order) => {
     return total + getPrice(order)
   }, 0)
+
+  const deleteItem = (index) => {
+    const newOrders = [...orders]
+    newOrders.splice(index, 1)
+    setOrders(newOrders)
+  }
+
   return (
     <OrderStyled>
       {orders.length === 0 ? (
@@ -62,11 +80,20 @@ function Order({ orders }) {
           <OrderContent>
             {" "}
             <OrderContainer>Your order: {orders.length} items</OrderContainer>
-            {orders.map((order) => (
-              <OrderContainer>
-                <OrderItem>
+            {orders.map((order, index) => (
+              <OrderContainer editable>
+                <OrderItem onClick={() => setOpenFood({ ...order, index })}>
                   <div>{order.quantity}</div>
                   <div>{order.name}</div>
+                  <div
+                    style={{ cursor: "pointer" }}
+                    onClick={(e) => {
+                      e.stopPropagation()
+                      deleteItem(index)
+                    }}
+                  >
+                    X
+                  </div>
                   <div>{formatPrice(getPrice(order))}</div>
                 </OrderItem>
                 <DetailItem>
@@ -75,6 +102,7 @@ function Order({ orders }) {
                     .map((topping) => topping.name)
                     .join(", ")}
                 </DetailItem>
+                {order.choice && <DetailItem>{order.choice}</DetailItem>}
               </OrderContainer>
             ))}
             <OrderContainer>

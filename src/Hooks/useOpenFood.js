@@ -7,3 +7,11 @@ export const useOpenFood = () => {
     setOpenFood,
   }
 }
+
+export const useIsOpenFood = () => {
+  const [isOpenFood, setIsOpenFood] = useState(false)
+  return {
+    isOpenFood,
+    setIsOpenFood,
+  }
+}

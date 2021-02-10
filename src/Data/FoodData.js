@@ -21,6 +21,18 @@ export const foodItems = [
     price: 5.99,
   },
   {
+    name: "Pepperoni Pizza",
+    img: "/img/pizza.jpg",
+    category: "Pizza",
+    price: 5.99,
+  },
+  {
+    name: "Pepperoni Pizza",
+    img: "/img/pizza.jpg",
+    category: "Pizza",
+    price: 5.99,
+  },
+  {
     name: "Deal 1",
     img: "/img/pizza.jpg",
     category: "Meal Deals",
@@ -44,17 +56,29 @@ export const foodItems = [
     category: "Sides",
     price: 2.99,
   },
+  // {
+  //   name: "Coke",
+  //   img: "/img/pizza.jpg",
+  //   category: "Drinks",
+  //   price: 0.99,
+  // },
+  // {
+  //   name: "Fanta",
+  //   img: "/img/pizza.jpg",
+  //   category: "Drinks",
+  //   price: 0.99,
+  // },
   {
-    name: "Coke",
-    img: "/img/pizza.jpg",
+    price: 1.5,
+    name: "Bottle",
     category: "Drinks",
-    price: 0.99,
+    choices: ["Coke", "Sprite", "Fanta"],
   },
   {
-    name: "Fanta",
-    img: "/img/pizza.jpg",
+    price: 1,
+    name: "Can",
     category: "Drinks",
-    price: 0.99,
+    choices: ["Coke", "Sprite", "Fanta"],
   },
 ]
 

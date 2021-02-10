@@ -13,8 +13,7 @@ import Order from "./Order/Order"
 const GlobalStyle = createGlobalStyle`
   body {
     font-family: 'Open Sans', sans-serif;
-    
-    
+   
   }
 
   h1, h2, h3{
@@ -26,13 +25,15 @@ function App() {
   const openFood = useOpenFood()
   const orders = useOrders()
 
+  const isOpenFood = openFood !== null
+
   useTitle({ ...openFood, ...orders })
   return (
     <>
       <GlobalStyle />
       <FoodDialog {...openFood} {...orders} />
       <Navbar />
-      <Order {...orders} />
+      <Order {...orders} {...openFood} />
       <Banner />
       <Menu {...openFood} />
     </>
